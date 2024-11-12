@@ -3,22 +3,40 @@
 {% load static %}
 {% block content %}
 
+  <div class="row">
+    <div class="col-4 offset-4">
+      <div class="d-flex justify-content-center align-items-center"
+           style="background-color:#080404; height: 50px;border-radius: 50px; padding: 50px;margin-top: 10px;margin-bottom: 10px;">
+        <h1 class="m-0 text-center">Chat z doradcą zakupowym</h1>
+      </div>
+    </div>
+  </div>
 
-<h1 class="text-center">Chatbot</h1>
-<div id="conversation">
+<div id="conversation" style="font-size: 20px;">
+    {% if user.is_authenticated %}
+     <div class="chatbot-messages"><p>Doradca zakupowy: Witaj {{user.username}}! W czym mogę ci dzisiaj pomóc?</p></div>
+    {% else %}
+    <div class="chatbot-messages"><p>Doradca zakupowy: Witaj nieznajomy! W czym mogę ci dzisiaj pomóc?</p></div>
+    {% endif %}
+
     {% for message in conversation %}
         {% if message.role == 'user' %}
-            <div class="user-messages"><p>You: {{ message.content }}</p></div>
+            {% if user.is_authenticated %}
+                <div class="user-messages"><p>{{user.username}}: {{ message.content }}</p></div>
+            {% else %}
+                <div class="user-messages"><p>You: {{ message.content }}</p></div>
+            {% endif %}
         {% elif message.role == 'assistant' %}
-            <div class="chatbot-messages"><p>ChatBot: {{ message.content }}</p></div>
+            <div class="chatbot-messages"><p>Doradca zakupowy: {{ message.content }}</p></div>
         {% endif %}
     {% endfor %}
+<!--    {{user.username}} dal bym jak by sie dalo-->
 </div>
 <form id="chat-form" method="POST" action=".">
     {% csrf_token %}
     <div class="container">
-        <textarea rows="2   " class="centered-textarea" id="user-input" type="text" name="user_input" placeholder="Your message"></textarea>
-        <input type="submit" value="Send">
+        <textarea rows="2   " class="centered-textarea" id="user-input" type="text" name="user_input" placeholder="Twoja wiadomość"></textarea>
+        <input type="submit" value="Wyślij">
     </div>
 </form>
 

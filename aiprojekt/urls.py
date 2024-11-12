@@ -20,17 +20,23 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('frontend.urls')),
-    path('products/', include('frontend.urls')),
-    path('polls/', include('polls.urls')),
-    path('login/', include('frontend.urls')),
-    path('signup/', include('frontend.urls')),
-    path('logout/', include('frontend.urls')),
-    path('chatbot/', include('chatbot.urls')),
+    path('', include('frontend.urls')),  # All frontend-related paths are in frontend.urls
+    path('chatbot/', include('chatbot.urls')),  # Separate app with its own URLs
 ]
+
+
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', include('frontend.urls')),
+#     path('products/', include('frontend.urls')),
+#     path('login/', include('frontend.urls')),
+#     path('signup/', include('frontend.urls')),
+#     path('logout/', include('frontend.urls')),
+#     path('chatbot/', include('chatbot.urls')),
+# ]
 
 
 

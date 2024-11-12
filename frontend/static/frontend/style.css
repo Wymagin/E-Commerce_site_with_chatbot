@@ -1,42 +1,74 @@
+a {
+    font-size: 15px;
+    color: #03A9F4;
+}
 
-        a{
-        font-size: 15px;
-        }
-
-        a:hover{
-            transition: transform .6s ease;
-            transform: scale(1.1);
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            font-weight: 700;
-            border: none;
-            color: white;
-            background: #f61414 !important;
-                }
-        body{
-            background-color: #151617;
-            color: white;
-
-        }
-        .hover_img{
-        transition: transform .5s ease;
-        }
-        .hover_img:hover{
-            transform: scale(1.05);
-        }
-        #popup_modal{
-        max-width: 1000px;
-        margin-top: 0px;
-        }
+a:hover {
+    transition: transform .6s ease;
+    transform: scale(1.1);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    border: none;
+    color: #FFFFFF;
+    background: #FF5722 !important;
+}
 
 
-        #conversation {
-            height: 500px;
-            border: 1px solid #000;
-            margin-bottom: 10px;
-            overflow-y: scroll;
-            background-color: #424755;
-        }
+body {
+    background-color: #1E1E1E;
+    background-image: url("calm.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding-bottom: 50px;
+}
+
+.list-group {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    width: 200px;
+}
+
+#products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: left;
+}
+
+
+.hover_img {
+    transition: transform .5s ease;
+}
+
+.hover_img:hover {
+    transform: scale(1.05);
+}
+
+#popup_modal {
+    max-width: 1000px;
+    margin-top: 0px;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#conversation {
+    height: 600px;
+    width: 75% !important;
+    border: 1px solid #000;
+    margin: 0 auto !important;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    background-color: #424755;
+    box-sizing: border-box;
+    opacity: 80%;
+}
         .container {
             display: flex;
         }

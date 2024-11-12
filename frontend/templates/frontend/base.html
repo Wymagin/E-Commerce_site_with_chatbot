@@ -16,8 +16,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand text-white" style="pointer-events: none;">Sklep z butami</a>
+<nav class="navbar navbar-expand-lg" style = "background-color:#080404;">
+    <a class="navbar-brand text-white" style="pointer-events: none; font-size: 22px;">Sklep z butami</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,31 +26,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'frontend:home' %}">Sklep</a>
+                <a class="nav-link" style="font-size: 22px;" href="{% url 'frontend:home' %}">Katalog produktów</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'polls:index' %}">Ankiety</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'chatbot:chatbot' %}">Chatbot</a>
+                <a class="nav-link" style="font-size: 22px;" href="{% url 'chatbot:chatbot' %}">Doradca zakupowy</a>
             </li>
         </ul>
 
         <ul class="navbar-nav my-2 my-lg-0">
+            {% if user.is_superuser %}
+            <a class="nav-link" style="font-size: 22px;" href="/admin">Strona administratora</a>
+            {% endif %}
             {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/logout">Logout</a>
+            <a class="nav-link" style="font-size: 22px;"href="/logout">Wyloguj się</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Hey {{user.username}}</a>
+                <a class="nav-link text-white" href="#"style="font-size: 22px;">Witaj {{user.username}}!</a>
             </li>
 
             {% else %}
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'frontend:login' %}">Login</a>
+                <a class="nav-link" style="font-size: 22px;" href="{% url 'frontend:login' %}">Logowanie</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'frontend:signup' %}">Signup</a>
+                <a class="nav-link" style="font-size: 22px;" href="{% url 'frontend:signup' %}">Rejestracja</a>
             </li>
 
             {% endif %}
@@ -64,8 +63,17 @@
 
 {% endblock %}
 
-<div class="container-fluid bg-dark mt-3">
-    <center><strong><p class="text-white mb-0  ml-4 py-3" style="font-size: 18px;"><i class="fas fa-copyright"></i> Mup Oświęcim</p></strong></center>
+<!--<div class="container-fluid bg-dark mt-3">-->
+<!--    <center><strong><p class="text-white mb-0  ml-4 py-3" style="font-size: 18px;"><i class="fas fa-copyright"></i> Mup Oświęcim</p></strong></center>-->
+<!--</div>-->
+<div class="container-fluid footer" style="background-color:#080404;">
+    <center>
+        <strong>
+            <p class="text-white mb-0 ml-4 py-3" style="font-size: 22px;">
+                <i class="fas fa-copyright"></i> Sebastian Paw
+            </p>
+        </strong>
+    </center>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

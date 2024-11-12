@@ -1,21 +1,12 @@
-from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render, redirect
-from django.urls import reverse
-from django.views import generic
-from django.utils import timezone
-from .models import Category,Product
+from .models import Category, Product, Cart, CartItem
 from .forms import NewUserForm
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from rest_framework import permissions,viewsets
-from rest_framework.views import APIView
-from rest_framework.response import Response
-
-from frontend.serializers import ProductSerializer, UserSerializer
 
 
 
@@ -29,19 +20,6 @@ def homePage(request):
         products = Product.objects.filter(category=1)
     context = {'products': products, 'categories': categories}
     return render(request, 'frontend/home.html', context)
-# Def Productsview(request):
-
-# def products(request):
-#     products = Product.objects.all()
-#     return render(request, 'frontend/products.html', {'products': products})
-
-
-# def login(request):
-#     return render(request, 'frontend/login.html')
-#
-#
-# def signup(request):
-#     return render(request, 'frontend/signup.html')
 
 def register_request(request):
     if request.method == "POST":
@@ -79,31 +57,13 @@ def logout_request(request):
     messages.info(request, "You have successfully logged out.")
     return redirect("frontend:home")
 
-# class ProductViewSet(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows products to be viewed or edited.
-#     """
-#     queryset = Product.objects.all()
-#     serializer_class = ProductSerializer
-#     permission_classes = [permissions.IsAuthenticated]
 
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user=request.user if request.user.is_authenticated else None)
+    cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
+    if not item_created:
+        cart_item.quantity += 1
+        cart_item.save()
 
-class MyModelList(APIView):
-    def get(self, request):
-        products = Product.objects.all()
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
-
-
-
-
-
-# class UserViewSet(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows users to be viewed or edited.
-#     """
-#     queryset = User.objects.all().order_by('-date_joined')
-#     serializer_class = UserSerializer
-#     permission_classes = [permissions.IsAdminUser]
-#
-
+    return redirect('cart_detail')  # Redirect to cart view after adding

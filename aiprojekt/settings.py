@@ -37,13 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls.apps.PollsConfig',
     'frontend.apps.FrontendConfig',
     'chatbot.apps.ChatbotConfig',
     'bootstrap4',
     'crispy_forms',
     'crispy_bootstrap4',
-    'rest_framework',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +140,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 5 * 600
