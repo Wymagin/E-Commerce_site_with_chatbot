@@ -1,0 +1,14 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+
+
+
+{% for item in cart.items.all %}
+    <p>{{ item.product.name }} - {{ item.quantity }} x ${{ item.product.price }} = ${{ item.total_price }}</p>
+    <!-- Add buttons for increasing/decreasing quantity or removing the item -->
+{% endfor %}
+<p>Total: ${{ cart.total_price }}</p>
+
+
+{% endblock %}
