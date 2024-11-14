@@ -66,8 +66,9 @@
 
                     <div class="card-body text-white d-flex flex-column justify-content-between">
                         <p class="card-title">{{product.name}}</p>
-                        <p class="card-text"><i class="fas fa-dollar-sign" style="margin-right: 2px; font-size: 15px;"></i>{{product.price}}</p>
-                        <a href="#" class="btn btn-primary btn-sm">Dodaj do Koszyka</a>
+                        <p class="card-text"><i class="fas fa-dollar-sign" style="margin-right: 2px; font-size: 15px;"></i>
+                        {{product.price}}</p>
+                        <a href="{% url 'frontend:add_to_cart' product.id %}" class="btn btn-primary btn-sm">Dodaj do Koszyka</a>
                     </div>
                 </div>
                 {% endfor %}

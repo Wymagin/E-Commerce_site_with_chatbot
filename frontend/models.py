@@ -1,6 +1,7 @@
 from django.db import models
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Category(models.Model):
 
@@ -46,3 +47,24 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
+    
+    
+class Purchase(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    purchased_at = models.DateTimeField(default=timezone.now)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    def __str__(self):
+        return f"Purchase {self.id} by {self.user}"
+
+class PurchaseItem(models.Model):
+    purchase = models.ForeignKey(Purchase, related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+
+    @property
+    def item_total_price(self):
+        return self.quantity * self.product.price
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} in Purchase {self.purchase.id}"

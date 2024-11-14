@@ -1,0 +1,14 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+    <h1>Purchase Confirmation</h1>
+    <p>Thank you for your purchase!</p>
+    <h3>Order Summary</h3>
+    <ul>
+        {% for item in purchase.items.all %}
+            <li>{{ item.quantity }} x {{ item.product.name }} - ${{ item.item_total_price }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total Price: ${{ purchase.total_price }}</p>
+    <p>Purchased at: {{ purchase.purchased_at }}</p>
+{% endblock %}

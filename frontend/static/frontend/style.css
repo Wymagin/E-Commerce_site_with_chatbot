@@ -33,10 +33,37 @@ body {
 
 #products {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: left;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center; /* Centers items within the container */
+    margin: 0 auto; /* Optional: centers the grid within the container */
 }
 
+.card {
+    border-radius: 8px;
+    background-color: #080404;
+    color: white;
+}
+
+.card img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover; /* Ensures images are uniformly displayed */
+    border-radius: 8px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.btn-sm {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    margin-top: 10px;
+}
 
 .hover_img {
     transition: transform .5s ease;

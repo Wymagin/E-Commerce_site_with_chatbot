@@ -45,7 +45,7 @@ def chatbot_view(request):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=prompts,
-            api_key="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"
+            api_key="-----"
         )
 
         chatbot_replies = [message['message']['content'] for message in response['choices'] if
