@@ -1,6 +1,11 @@
 # E-Commerce_site_with_chatbot
 
-E-commerce site build with django utilizing openai library.
+E-commerce platform built with Django that integrates an AI-powered chatbot using the OpenAI API to enhance customer experience and support.
+## Requirements
+
+- Python
+- Django
+- OpenAI API key
 
 ## Getting Started
 
@@ -11,7 +16,7 @@ git clone https://github.com/Wymagin/E-Commerce_site_with_chatbot.git
 ```
 ### Install requirements
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Generate a Django Secret Key
@@ -59,5 +64,4 @@ tbd
 
 
 ### License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
+This project is licensed under the MIT License.
