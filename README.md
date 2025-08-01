@@ -59,7 +59,17 @@ python manage.py createsuperuser
 ## Project Structure
 
 ```bash
-tbd
+aiprojekt/
+│
+├── aiprojekt/
+├── chatbot/
+├── frontend/
+├── static/
+├── templates/
+├── db.sqlite3
+├── manage.py
+├── README.md
+└── requirements.txt
 ```
 
 
